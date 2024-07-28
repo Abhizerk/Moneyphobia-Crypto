@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Market Data Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        li:hover {
+            transform: scale(1.02);
+        }
+        .crypto-name {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .crypto-price, .crypto-market-cap, .crypto-volume {
+            color: #333;
+            font-size: 1.1em;
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        @media (max-width: 600px) {
+            li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .crypto-price, .crypto-market-cap, .crypto-volume {
+                margin-top: 10px;
+            }
+            footer a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Crypto Market Data Analysis</h1>
+        <a href="https://calculator.moneyphobia.in/" target="_blank">Home</a>
+    </header>
+    <main>
+        <ul id="cryptoList"></ul>
+    </main>
+    <footer>
+        <a href="https://calculator.moneyphobia.in/" target="_blank">Home</a>
+        <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+        <a href="/about-us" target="_blank">About Us</a>
+        <a href="/contact-us" target="_blank">Contact Us</a>
+        <a href="/crypto-live-data" target="_blank">Crypto Live Data</a>
+        <a href="/crypto-aggregator" target="_blank">Crypto Aggregator</a>
+    </footer>
+    <script>
+        async function fetchCryptoData() {
+            const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const cryptoList = document.getElementById('cryptoList');
+
+                // Clear any existing data
+                cryptoList.innerHTML = '';
+
+                // Add crypto data items
+                data.forEach(coin => {
+                    const cryptoItem = document.createElement('li');
+                    cryptoItem.innerHTML = `
+                        <span class="crypto-name">${coin.name}</span>
+                        <span class="crypto-price">Price: USD ${coin.current_price}</span>
+                        <span class="crypto-market-cap">Market Cap: USD ${coin.market_cap}</span>
+                        <span class="crypto-volume">24h Volume: USD ${coin.total_volume}</span>`;
+                    cryptoList.appendChild(cryptoItem);
+                });
+            } catch (error) {
+                console.error('Error fetching crypto data:', error);
+            }
+        }
+
+        // Fetch crypto data on page load
+        window.onload = fetchCryptoData;
+    </script>
+</body>
+</html>

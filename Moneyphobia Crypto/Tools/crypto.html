@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources for Staying Updated with Cryptocurrency Regulations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #FFFFFF;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        li:hover {
+            transform: scale(1.02);
+        }
+        .resource-name {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .resource-link {
+            color: #333;
+            font-size: 1.1em;
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .resource-link:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        @media (max-width: 600px) {
+            li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .resource-link {
+                margin-top: 10px;
+            }
+            footer a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Resources for Staying Updated with Cryptocurrency Regulations</h1>
+        <a href="https://calculator.moneyphobia.in/tools/crypto.html" target="_blank">Home</a>
+    </header>
+    <main>
+        <ul id="resourceList"></ul>
+    </main>
+    <footer>
+        <a href="https://calculator.moneyphobia.in/" target="_blank">Home</a>
+        <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+        <a href="/about-us" target="_blank">About Us</a>
+        <a href="/contact-us" target="_blank">Contact Us</a>
+        <a href="/crypto-live-data" target="_blank">Crypto Live Data</a>
+        <a href="/crypto-aggregator" target="_blank">Crypto Aggregator</a>
+    </footer>
+    <script>
+        const resources = [
+            { name: "CoinDesk Regulatory News", link: "https://www.coindesk.com/tech/cryptocurrency-regulation" },
+            { name: "CoinTelegraph Regulation", link: "https://cointelegraph.com/tags/regulation" },
+            { name: "CryptoSlate Regulation", link: "https://cryptoslate.com/regulation/" },
+            { name: "The Block - Regulation", link: "https://www.theblock.co/tags/regulation" },
+            { name: "Bitcoin Magazine Regulatory News", link: "https://bitcoinmagazine.com/markets/regulation" },
+            { name: "Decrypt Regulation", link: "https://decrypt.co/category/regulation" }
+        ];
+
+        function populateResources() {
+            const resourceList = document.getElementById('resourceList');
+            resources.forEach(resource => {
+                const resourceItem = document.createElement('li');
+                resourceItem.innerHTML = `<span class="resource-name">${resource.name}</span> <a class="resource-link" href="${resource.link}" target="_blank">Visit</a>`;
+                resourceList.appendChild(resourceItem);
+            });
+        }
+
+        // Populate resources on page load
+        window.onload = populateResources;
+    </script>
+</body>
+</html>
